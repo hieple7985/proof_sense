@@ -1,0 +1,13 @@
+{
+  "name": "proofsense-monorepo",
+  "private": true,
+  "version": "0.1.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "echo Use --filter to run app scripts",
+    "build": "echo Use --filter to run app builds"
+  }
+}

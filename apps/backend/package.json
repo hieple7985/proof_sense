@@ -1,0 +1,10 @@
+{
+  "name": "@proofsense/backend",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node dist/main.js",
+    "build": "echo build placeholder"
+  }
+}
