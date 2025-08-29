@@ -14,4 +14,17 @@ function cosineSim(a, b) {
   return dot / (Math.sqrt(as) * Math.sqrt(bs) + 1e-8);
 }
 
-module.exports = { chunkText, cosineSim };
+// Simple hashing-based embedding (bag-of-words into fixed 128-dim)
+function embedText(text, dim = 128) {
+  const vec = new Array(dim).fill(0);
+  const tokens = (text || '').toLowerCase().split(/[^a-z0-9]+/).filter(Boolean);
+  for (const tok of tokens) {
+    let h = 2166136261;
+    for (let i = 0; i < tok.length; i++) h = (h ^ tok.charCodeAt(i)) * 16777619 >>> 0;
+    vec[h % dim] += 1;
+  }
+  const norm = Math.sqrt(vec.reduce((s, v) => s + v*v, 0)) + 1e-8;
+  return vec.map(v => v / norm);
+}
+
+module.exports = { chunkText, cosineSim, embedText };
