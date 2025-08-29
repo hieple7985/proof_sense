@@ -8,6 +8,7 @@ export class HealthController {
   @Get('healthz')
   async getHealth() {
     const ping = await modelRunner.pingOllama(config.ollamaHost);
-    return { status: 'ok', ollama: !!ping.ok };
+    const tag = ping && ping.ok && ping.data && Array.isArray(ping.data.models) && ping.data.models.length ? ping.data.models[0].name : undefined;
+    return { status: 'ok', ollama: !!ping.ok, tag };
   }
 }

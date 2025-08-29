@@ -1,0 +1,7 @@
+[
+  { "q": "What are the payment terms?", "expected": "Invoices are due net 30 days from receipt.", "doc": "contractA" },
+  { "q": "How can the agreement be terminated?", "expected": "Thirty (30) days prior written notice.", "doc": "contractA" },
+  { "q": "Is there termination for cause?", "expected": "Immediate upon material breach not cured within ten (10) days.", "doc": "contractB" },
+  { "q": "What is the liability cap?", "expected": "Fees paid in the 12 months preceding the claim.", "doc": "contractB" },
+  { "q": "What uptime is promised?", "expected": "Commercially reasonable efforts to maintain 99.9% uptime.", "doc": "contractC" }
+]
