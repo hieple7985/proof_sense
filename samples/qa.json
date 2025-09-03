@@ -1,7 +1,22 @@
 [
-  { "q": "What are the payment terms?", "expected": "Invoices are due net 30 days from receipt.", "doc": "contractA" },
-  { "q": "How can the agreement be terminated?", "expected": "Thirty (30) days prior written notice.", "doc": "contractA" },
-  { "q": "Is there termination for cause?", "expected": "Immediate upon material breach not cured within ten (10) days.", "doc": "contractB" },
-  { "q": "What is the liability cap?", "expected": "Fees paid in the 12 months preceding the claim.", "doc": "contractB" },
-  { "q": "What uptime is promised?", "expected": "Commercially reasonable efforts to maintain 99.9% uptime.", "doc": "contractC" }
+  { "q": "What are the payment terms?", "expected": "Invoices are due net 30 days from receipt.", "doc": "contractA", "citations": ["contractA"] },
+  { "q": "How can the agreement be terminated?", "expected": "Thirty (30) days prior written notice.", "doc": "contractA", "citations": ["contractA"] },
+  { "q": "What is the confidentiality period?", "expected": "Five (5) years.", "doc": "contractA", "citations": ["contractA"] },
+  { "q": "Is there termination for cause?", "expected": "Immediate upon material breach not cured within ten (10) days.", "doc": "contractB", "citations": ["contractB"] },
+  { "q": "What security controls are required?", "expected": "Industry-standard security controls.", "doc": "contractB", "citations": ["contractB"] },
+  { "q": "What is the liability cap?", "expected": "Fees paid in the 12 months preceding the claim.", "doc": "contractB", "citations": ["contractB"] },
+  { "q": "What uptime is promised?", "expected": "Commercially reasonable efforts to maintain 99.9% uptime.", "doc": "contractC", "citations": ["contractC"] },
+  { "q": "What is the initial term?", "expected": "One (1) year.", "doc": "contractC", "citations": ["contractC"] },
+  { "q": "What law governs the agreement?", "expected": "Laws of California.", "doc": "contractC", "citations": ["contractC"] },
+  { "q": "Can either party terminate without cause?", "expected": "Yes, with thirty (30) days prior written notice.", "doc": "contractA", "citations": ["contractA"] },
+  { "q": "How long must confidential information be kept secret?", "expected": "Five (5) years.", "doc": "contractA", "citations": ["contractA"] },
+  { "q": "What happens if there's a material breach?", "expected": "Immediate termination if not cured within ten (10) days.", "doc": "contractB", "citations": ["contractB"] },
+  { "q": "Are there specific security requirements?", "expected": "Yes, industry-standard security controls must be implemented.", "doc": "contractB", "citations": ["contractB"] },
+  { "q": "How is liability limited?", "expected": "To the fees paid in the twelve months preceding the claim.", "doc": "contractB", "citations": ["contractB"] },
+  { "q": "What service level is guaranteed?", "expected": "99.9% uptime using commercially reasonable efforts.", "doc": "contractC", "citations": ["contractC"] },
+  { "q": "Does the agreement auto-renew?", "expected": "Yes, automatically renewing unless terminated.", "doc": "contractC", "citations": ["contractC"] },
+  { "q": "What jurisdiction applies to disputes?", "expected": "California law governs the agreement.", "doc": "contractC", "citations": ["contractC"] },
+  { "q": "What notice period applies to termination?", "expected": "Thirty (30) days prior written notice.", "doc": "contractA", "citations": ["contractA"] },
+  { "q": "Are there cure periods for breaches?", "expected": "Yes, ten (10) days to cure material breaches.", "doc": "contractB", "citations": ["contractB"] },
+  { "q": "What performance standard applies?", "expected": "Commercially reasonable efforts to maintain 99.9% uptime.", "doc": "contractC", "citations": ["contractC"] }
 ]

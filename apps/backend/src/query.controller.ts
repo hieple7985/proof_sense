@@ -7,13 +7,13 @@ export class QueryController {
   constructor(private readonly retrieval: RetrievalService, private readonly answer: AnswerService) {}
 
   @Post()
-  async query(@Body() body: { datasetId?: string; query: string; k?: number; synthesize?: boolean }) {
+  async query(@Body() body: { datasetId?: string; query: string; k?: number; synthesize?: boolean; useFT?: boolean }) {
     const datasetId = body.datasetId || 'default';
     const k = body.k || 3;
     const contexts = this.retrieval.search(datasetId, body.query, k);
     let answer: string | undefined = undefined;
     if (body.synthesize) {
-      answer = await this.answer.synthesize({ query: body.query, contexts });
+      answer = await this.answer.synthesize({ query: body.query, contexts, useFT: body.useFT });
     }
     const citations = contexts.map((c, idx) => ({ docId: c.id.split('::')[0], page: undefined, quote: undefined, offsets: undefined, rank: idx + 1 }));
     return { answer, contexts, citations };

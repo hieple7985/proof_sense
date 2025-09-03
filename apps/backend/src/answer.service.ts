@@ -4,12 +4,27 @@ const modelRunner = require('@proofsense/model-runner');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { buildAnswerPrompt } = require('@proofsense/prompts');
 import { config } from './config';
+import { FineTuneService } from './finetune.service';
+
+const DEFAULT_LOCAL_MODEL = process.env.OLLAMA_MODEL || process.env.MODEL_NAME || 'llama3.2:1b';
 
 @Injectable()
 export class AnswerService {
-  async synthesize(params: { query: string; contexts: { id: string; name: string; score: number }[] }) {
+  constructor(private readonly ft: FineTuneService) {}
+
+  async synthesize(params: { query: string; contexts: { id: string; name: string; score: number }[]; useFT?: boolean }) {
     const prompt = buildAnswerPrompt(params.query, params.contexts);
-    const res = await modelRunner.generateOllama({ host: config.ollamaHost, model: 'gpt-oss-20b', prompt }).catch(() => null);
+
+    let model = DEFAULT_LOCAL_MODEL;
+    if (params.useFT) {
+      const jobs = this.ft.listJobs();
+      const completedFT = jobs.find(j => j.status === 'completed' && j.model.includes('gpt-oss-20b'));
+      if (completedFT) {
+        model = `gpt-oss-20b-lora-${completedFT.id}`;
+      }
+    }
+
+    const res = await modelRunner.generateOllama({ host: config.ollamaHost, model, prompt }).catch(() => null);
     if (!res || !res.ok) return 'Insufficient evidence or local model unavailable.';
     const data = res.data || {};
     return data.response || String(data) || '';
