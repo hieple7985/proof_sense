@@ -397,7 +397,7 @@ export default function Home() {
                   </div>
                   {job.metrics && (
                     <div style={{ color: '#555', fontSize: '0.8rem' }}>
-                      Loss: {job.metrics.loss} • Accuracy: {(job.metrics.accuracy * 100).toFixed(1)}%
+                      Loss: {job.metrics.loss} • Accuracy: {((job.metrics.accuracy || 0) * 100).toFixed(1)}%
                     </div>
                   )}
                 </div>
