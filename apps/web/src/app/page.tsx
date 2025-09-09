@@ -113,67 +113,62 @@ export default function Home() {
 
   return (
     <div style={{
-      padding: '2rem',
+      padding: '1rem',
       fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-      maxWidth: '1200px',
+      maxWidth: '900px',
       margin: '0 auto',
-      background: '#fafafa',
+      background: '#fff',
       minHeight: '100vh'
     }}>
-      <header style={{ marginBottom: '2rem', textAlign: 'center' }}>
+      <header style={{ marginBottom: '1.5rem', borderBottom: '1px solid #eee', paddingBottom: '1rem' }}>
         <h1 style={{
-          fontSize: '2.5rem',
-          fontWeight: '300',
-          color: '#2c3e50',
-          marginBottom: '0.5rem'
+          fontSize: '1.8rem',
+          fontWeight: '600',
+          color: '#333',
+          marginBottom: '0.25rem',
+          margin: 0
         }}>ProofSense</h1>
-        <p style={{ color: '#7f8c8d', fontSize: '1.1rem' }}>
-          Local Contract Analysis with Transparent Citations
+        <p style={{ color: '#666', fontSize: '0.9rem', margin: '0.25rem 0' }}>
+          Local Contract Analysis
         </p>
         <div style={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: '1rem',
-          background: 'white',
-          padding: '0.5rem 1rem',
-          borderRadius: '8px',
-          boxShadow: '0 2px 4px rgba(0,0,0,0.1)',
-          fontSize: '0.9rem',
-          color: '#555'
+          fontSize: '0.8rem',
+          color: '#888',
+          marginTop: '0.5rem'
         }}>
-          <span>Backend: <strong style={{ color: health?.status === 'ok' ? '#27ae60' : '#e74c3c' }}>{health?.status || 'unknown'}</strong></span>
-          <span>•</span>
-          <span>Model: <strong style={{ color: health?.ollama ? '#27ae60' : '#e74c3c' }}>{health?.ollama ? 'ready' : 'unavailable'}</strong></span>
+          Backend: <span style={{ color: health?.status === 'ok' ? '#28a745' : '#dc3545' }}>{health?.status || 'unknown'}</span>
+          {' • '}
+          Model: <span style={{ color: health?.ollama ? '#28a745' : '#dc3545' }}>{health?.ollama ? 'ready' : 'unavailable'}</span>
         </div>
       </header>
       {error && <div style={{
-        color: 'white',
-        background: '#e74c3c',
-        padding: '1rem',
+        color: '#721c24',
+        background: '#f8d7da',
+        padding: '0.75rem',
         marginBottom: '1rem',
-        borderRadius: '8px',
-        boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+        borderRadius: '4px',
+        border: '1px solid #f5c6cb',
+        fontSize: '0.9rem'
       }}>{error}</div>}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem', marginBottom: '2rem' }}>
+
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem', marginBottom: '1.5rem' }}>
 
         {/* Ingest Section */}
         <div style={{
-          background: 'white',
-          padding: '1.5rem',
-          borderRadius: '12px',
-          boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+          border: '1px solid #ddd',
+          padding: '1rem',
+          borderRadius: '4px'
         }}>
           <h2 style={{
-            fontSize: '1.5rem',
-            fontWeight: '500',
-            color: '#2c3e50',
-            marginBottom: '1rem',
-            borderBottom: '2px solid #3498db',
-            paddingBottom: '0.5rem'
-          }}>📄 Ingest Documents</h2>
+            fontSize: '1.1rem',
+            fontWeight: '600',
+            color: '#333',
+            marginBottom: '0.75rem',
+            margin: '0 0 0.75rem 0'
+          }}>Ingest</h2>
 
-          <div style={{ marginBottom: '1rem' }}>
-            <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#555' }}>
+          <div style={{ marginBottom: '0.75rem' }}>
+            <label style={{ display: 'block', marginBottom: '0.25rem', fontSize: '0.9rem', color: '#555' }}>
               Dataset ID
             </label>
             <input
@@ -181,20 +176,17 @@ export default function Home() {
               onChange={e => setDatasetId(e.target.value)}
               style={{
                 width: '100%',
-                padding: '0.75rem',
-                border: '2px solid #ecf0f1',
-                borderRadius: '8px',
-                fontSize: '1rem',
-                outline: 'none',
-                transition: 'border-color 0.2s'
+                padding: '0.5rem',
+                border: '1px solid #ccc',
+                borderRadius: '3px',
+                fontSize: '0.9rem',
+                outline: 'none'
               }}
-              onFocus={e => e.target.style.borderColor = '#3498db'}
-              onBlur={e => e.target.style.borderColor = '#ecf0f1'}
             />
           </div>
 
-          <div style={{ marginBottom: '1rem' }}>
-            <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#555' }}>
+          <div style={{ marginBottom: '0.75rem' }}>
+            <label style={{ display: 'block', marginBottom: '0.25rem', fontSize: '0.9rem', color: '#555' }}>
               Document Name
             </label>
             <input
@@ -203,40 +195,34 @@ export default function Home() {
               placeholder="contract.md"
               style={{
                 width: '100%',
-                padding: '0.75rem',
-                border: '2px solid #ecf0f1',
-                borderRadius: '8px',
-                fontSize: '1rem',
-                outline: 'none',
-                transition: 'border-color 0.2s'
+                padding: '0.5rem',
+                border: '1px solid #ccc',
+                borderRadius: '3px',
+                fontSize: '0.9rem',
+                outline: 'none'
               }}
-              onFocus={e => e.target.style.borderColor = '#3498db'}
-              onBlur={e => e.target.style.borderColor = '#ecf0f1'}
             />
           </div>
 
-          <div style={{ marginBottom: '1rem' }}>
-            <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#555' }}>
+          <div style={{ marginBottom: '0.75rem' }}>
+            <label style={{ display: 'block', marginBottom: '0.25rem', fontSize: '0.9rem', color: '#555' }}>
               Contract Text
             </label>
             <textarea
               value={text}
               onChange={e => setText(e.target.value)}
-              placeholder="Paste your contract text here..."
-              rows={8}
+              placeholder="Paste contract text here..."
+              rows={6}
               style={{
                 width: '100%',
-                padding: '0.75rem',
-                border: '2px solid #ecf0f1',
-                borderRadius: '8px',
-                fontSize: '1rem',
+                padding: '0.5rem',
+                border: '1px solid #ccc',
+                borderRadius: '3px',
+                fontSize: '0.85rem',
                 outline: 'none',
-                transition: 'border-color 0.2s',
                 resize: 'vertical',
                 fontFamily: 'Monaco, Consolas, monospace'
               }}
-              onFocus={e => e.target.style.borderColor = '#3498db'}
-              onBlur={e => e.target.style.borderColor = '#ecf0f1'}
             />
           </div>
 
@@ -245,38 +231,34 @@ export default function Home() {
             disabled={loading !== 'idle'}
             style={{
               width: '100%',
-              padding: '0.75rem',
-              background: loading === 'ingest' ? '#95a5a6' : '#3498db',
+              padding: '0.6rem',
+              background: loading === 'ingest' ? '#6c757d' : '#007bff',
               color: 'white',
               border: 'none',
-              borderRadius: '8px',
-              fontSize: '1rem',
-              fontWeight: '500',
-              cursor: loading === 'ingest' ? 'not-allowed' : 'pointer',
-              transition: 'background-color 0.2s'
+              borderRadius: '3px',
+              fontSize: '0.9rem',
+              cursor: loading === 'ingest' ? 'not-allowed' : 'pointer'
             }}
           >
-            {loading === 'ingest' ? '📤 Ingesting...' : '📤 Ingest Document'}
+            {loading === 'ingest' ? 'Ingesting...' : 'Ingest'}
           </button>
         </div>
-        {/* Query & Fine-tune Section */}
+        {/* Query Section */}
         <div style={{
-          background: 'white',
-          padding: '1.5rem',
-          borderRadius: '12px',
-          boxShadow: '0 4px 6px rgba(0,0,0,0.1)'
+          border: '1px solid #ddd',
+          padding: '1rem',
+          borderRadius: '4px'
         }}>
           <h2 style={{
-            fontSize: '1.5rem',
-            fontWeight: '500',
-            color: '#2c3e50',
-            marginBottom: '1rem',
-            borderBottom: '2px solid #e67e22',
-            paddingBottom: '0.5rem'
-          }}>🔍 Query & Analysis</h2>
+            fontSize: '1.1rem',
+            fontWeight: '600',
+            color: '#333',
+            marginBottom: '0.75rem',
+            margin: '0 0 0.75rem 0'
+          }}>Query</h2>
 
-          <div style={{ marginBottom: '1rem' }}>
-            <label style={{ display: 'block', marginBottom: '0.5rem', fontWeight: '500', color: '#555' }}>
+          <div style={{ marginBottom: '0.75rem' }}>
+            <label style={{ display: 'block', marginBottom: '0.25rem', fontSize: '0.9rem', color: '#555' }}>
               Question
             </label>
             <input
@@ -285,36 +267,31 @@ export default function Home() {
               placeholder="What are the payment terms?"
               style={{
                 width: '100%',
-                padding: '0.75rem',
-                border: '2px solid #ecf0f1',
-                borderRadius: '8px',
-                fontSize: '1rem',
-                outline: 'none',
-                transition: 'border-color 0.2s'
+                padding: '0.5rem',
+                border: '1px solid #ccc',
+                borderRadius: '3px',
+                fontSize: '0.9rem',
+                outline: 'none'
               }}
-              onFocus={e => e.target.style.borderColor = '#e67e22'}
-              onBlur={e => e.target.style.borderColor = '#ecf0f1'}
             />
           </div>
 
-          <div style={{ display: 'flex', gap: '1rem', marginBottom: '1rem' }}>
-            <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
+          <div style={{ display: 'flex', gap: '1rem', marginBottom: '0.75rem', fontSize: '0.85rem' }}>
+            <label style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', cursor: 'pointer' }}>
               <input
                 type="checkbox"
                 checked={synthesize}
                 onChange={e => setSynthesize(e.target.checked)}
-                style={{ transform: 'scale(1.2)' }}
               />
-              <span style={{ fontWeight: '500', color: '#555' }}>Generate Answer</span>
+              <span>Generate Answer</span>
             </label>
-            <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', cursor: 'pointer' }}>
+            <label style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', cursor: 'pointer' }}>
               <input
                 type="checkbox"
                 checked={useFT}
                 onChange={e => setUseFT(e.target.checked)}
-                style={{ transform: 'scale(1.2)' }}
               />
-              <span style={{ fontWeight: '500', color: '#555' }}>Use Fine-tuned Model</span>
+              <span>Use Fine-tuned</span>
             </label>
           </div>
 
@@ -323,54 +300,52 @@ export default function Home() {
             disabled={loading !== 'idle'}
             style={{
               width: '100%',
-              padding: '0.75rem',
-              background: loading === 'query' ? '#95a5a6' : '#e67e22',
+              padding: '0.6rem',
+              background: loading === 'query' ? '#6c757d' : '#28a745',
               color: 'white',
               border: 'none',
-              borderRadius: '8px',
-              fontSize: '1rem',
-              fontWeight: '500',
+              borderRadius: '3px',
+              fontSize: '0.9rem',
               cursor: loading === 'query' ? 'not-allowed' : 'pointer',
-              transition: 'background-color 0.2s',
-              marginBottom: '1.5rem'
+              marginBottom: '1rem'
             }}
           >
-            {loading === 'query' ? '🔍 Analyzing...' : '🔍 Ask Question'}
+            {loading === 'query' ? 'Querying...' : 'Query'}
           </button>
 
           <h3 style={{
-            fontSize: '1.2rem',
-            fontWeight: '500',
-            color: '#8e44ad',
-            marginBottom: '1rem',
-            borderBottom: '1px solid #ecf0f1',
-            paddingBottom: '0.5rem'
-          }}>🧠 Fine-tuning</h3>
+            fontSize: '1rem',
+            fontWeight: '600',
+            color: '#333',
+            marginBottom: '0.5rem',
+            borderBottom: '1px solid #eee',
+            paddingBottom: '0.25rem'
+          }}>Fine-tuning</h3>
 
-          <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1rem' }}>
+          <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.75rem' }}>
             <button
               onClick={startFTJob}
               style={{
-                padding: '0.5rem 1rem',
-                background: '#8e44ad',
+                padding: '0.4rem 0.8rem',
+                background: '#6f42c1',
                 color: 'white',
                 border: 'none',
-                borderRadius: '6px',
-                fontSize: '0.9rem',
+                borderRadius: '3px',
+                fontSize: '0.8rem',
                 cursor: 'pointer'
               }}
             >
-              Start Training
+              Start
             </button>
             <button
               onClick={loadFTJobs}
               style={{
-                padding: '0.5rem 1rem',
-                background: '#95a5a6',
+                padding: '0.4rem 0.8rem',
+                background: '#6c757d',
                 color: 'white',
                 border: 'none',
-                borderRadius: '6px',
-                fontSize: '0.9rem',
+                borderRadius: '3px',
+                fontSize: '0.8rem',
                 cursor: 'pointer'
               }}
             >
@@ -378,26 +353,26 @@ export default function Home() {
             </button>
           </div>
 
-          <div style={{ fontSize: '0.9rem' }}>
+          <div style={{ fontSize: '0.8rem' }}>
             {ftJobs.length === 0 ? (
-              <p style={{ color: '#7f8c8d', fontStyle: 'italic' }}>No fine-tuning jobs yet</p>
+              <p style={{ color: '#888', fontStyle: 'italic', margin: 0 }}>No jobs yet</p>
             ) : (
               ftJobs.map((job) => (
                 <div key={job.id} style={{
                   background: '#f8f9fa',
-                  padding: '0.75rem',
-                  borderRadius: '6px',
+                  padding: '0.5rem',
+                  borderRadius: '3px',
                   marginBottom: '0.5rem',
-                  border: `2px solid ${job.status === 'completed' ? '#27ae60' : job.status === 'running' ? '#f39c12' : '#95a5a6'}`
+                  border: `1px solid ${job.status === 'completed' ? '#28a745' : job.status === 'running' ? '#ffc107' : '#6c757d'}`
                 }}>
-                  <div style={{ fontWeight: '500', marginBottom: '0.25rem' }}>
-                    {job.id} • <span style={{
-                      color: job.status === 'completed' ? '#27ae60' : job.status === 'running' ? '#f39c12' : '#95a5a6'
+                  <div style={{ marginBottom: '0.25rem' }}>
+                    {job.id.slice(-8)} • <span style={{
+                      color: job.status === 'completed' ? '#28a745' : job.status === 'running' ? '#ffc107' : '#6c757d'
                     }}>{job.status}</span>
                   </div>
                   {job.metrics && (
-                    <div style={{ color: '#555', fontSize: '0.8rem' }}>
-                      Loss: {job.metrics.loss} • Accuracy: {((job.metrics.accuracy || 0) * 100).toFixed(1)}%
+                    <div style={{ color: '#666', fontSize: '0.75rem' }}>
+                      Loss: {job.metrics.loss} • Acc: {((job.metrics.accuracy || 0) * 100).toFixed(1)}%
                     </div>
                   )}
                 </div>
@@ -409,34 +384,32 @@ export default function Home() {
       {/* Results Section */}
       {(answer || contexts.length > 0) && (
         <div style={{
-          background: 'white',
-          padding: '1.5rem',
-          borderRadius: '12px',
-          boxShadow: '0 4px 6px rgba(0,0,0,0.1)',
-          marginBottom: '2rem'
+          border: '1px solid #ddd',
+          padding: '1rem',
+          borderRadius: '4px',
+          marginBottom: '1rem'
         }}>
           <h2 style={{
-            fontSize: '1.5rem',
-            fontWeight: '500',
-            color: '#2c3e50',
-            marginBottom: '1rem',
-            borderBottom: '2px solid #27ae60',
-            paddingBottom: '0.5rem'
-          }}>💡 Analysis Results</h2>
+            fontSize: '1.1rem',
+            fontWeight: '600',
+            color: '#333',
+            marginBottom: '0.75rem',
+            margin: '0 0 0.75rem 0'
+          }}>Results</h2>
 
           {answer && (
-            <div style={{ marginBottom: '1.5rem' }}>
-              <h3 style={{ fontSize: '1.1rem', fontWeight: '500', color: '#27ae60', marginBottom: '0.5rem' }}>
+            <div style={{ marginBottom: '1rem' }}>
+              <h3 style={{ fontSize: '0.95rem', fontWeight: '600', color: '#333', marginBottom: '0.5rem' }}>
                 Answer
               </h3>
               <div style={{
                 background: '#f8f9fa',
-                padding: '1rem',
-                borderRadius: '8px',
-                border: '2px solid #27ae60',
+                padding: '0.75rem',
+                borderRadius: '3px',
+                border: '1px solid #dee2e6',
                 whiteSpace: 'pre-wrap',
-                lineHeight: '1.6',
-                fontSize: '1rem'
+                lineHeight: '1.5',
+                fontSize: '0.9rem'
               }}>
                 {answer}
               </div>
@@ -444,20 +417,20 @@ export default function Home() {
           )}
 
           {citations.length > 0 && (
-            <div style={{ marginBottom: '1.5rem' }}>
-              <h3 style={{ fontSize: '1.1rem', fontWeight: '500', color: '#e74c3c', marginBottom: '0.5rem' }}>
-                📚 Source Citations
+            <div style={{ marginBottom: '1rem' }}>
+              <h3 style={{ fontSize: '0.95rem', fontWeight: '600', color: '#333', marginBottom: '0.5rem' }}>
+                Citations
               </h3>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
                 {citations.map((c, idx) => (
                   <div key={idx} style={{
-                    background: '#fff5f5',
-                    padding: '0.75rem',
-                    borderRadius: '6px',
-                    border: '1px solid #fed7d7',
-                    fontSize: '0.9rem'
+                    background: '#f8f9fa',
+                    padding: '0.5rem',
+                    borderRadius: '3px',
+                    border: '1px solid #dee2e6',
+                    fontSize: '0.8rem'
                   }}>
-                    <strong>Document:</strong> {c.docId?.split('-')[0] || 'Unknown'}
+                    Doc: {c.docId?.split('-')[0] || 'Unknown'}
                     {typeof c.page === 'number' && <span> • Page {c.page}</span>}
                     <span style={{ marginLeft: '0.5rem', color: '#666' }}>#{c.rank}</span>
                   </div>
@@ -468,34 +441,34 @@ export default function Home() {
 
           {contexts.length > 0 && (
             <div>
-              <h3 style={{ fontSize: '1.1rem', fontWeight: '500', color: '#3498db', marginBottom: '0.5rem' }}>
-                🔍 Retrieved Context
+              <h3 style={{ fontSize: '0.95rem', fontWeight: '600', color: '#333', marginBottom: '0.5rem' }}>
+                Context
               </h3>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem' }}>
                 {contexts.map((c) => (
                   <div key={c.id} style={{
-                    background: '#f0f8ff',
-                    padding: '0.75rem',
-                    borderRadius: '6px',
-                    border: '1px solid #bee5eb',
-                    fontSize: '0.9rem'
+                    background: '#f8f9fa',
+                    padding: '0.5rem',
+                    borderRadius: '3px',
+                    border: '1px solid #dee2e6',
+                    fontSize: '0.8rem'
                   }}>
-                    <div style={{ fontWeight: '500', marginBottom: '0.25rem' }}>
-                      {c.name} • Relevance: {(c.score * 100).toFixed(1)}%
+                    <div style={{ marginBottom: '0.25rem' }}>
+                      {c.name} • {(c.score * 100).toFixed(1)}%
                     </div>
                     {(c as any).text && (
                       <div style={{
-                        color: '#555',
-                        fontSize: '0.8rem',
+                        color: '#666',
+                        fontSize: '0.75rem',
                         fontFamily: 'Monaco, Consolas, monospace',
                         background: 'white',
-                        padding: '0.5rem',
-                        borderRadius: '4px',
-                        marginTop: '0.5rem',
-                        maxHeight: '100px',
+                        padding: '0.4rem',
+                        borderRadius: '2px',
+                        marginTop: '0.25rem',
+                        maxHeight: '80px',
                         overflow: 'auto'
                       }}>
-                        {(c as any).text.substring(0, 200)}...
+                        {(c as any).text.substring(0, 150)}...
                       </div>
                     )}
                   </div>
