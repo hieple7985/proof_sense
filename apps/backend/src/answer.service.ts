@@ -6,7 +6,9 @@ const { buildAnswerPrompt } = require('@proofsense/prompts');
 import { config } from './config';
 import { FineTuneService } from './finetune.service';
 
-const DEFAULT_LOCAL_MODEL = process.env.OLLAMA_MODEL || process.env.MODEL_NAME || 'llama3.2:1b';
+// Use small model for local dev, gpt-oss:20b for demo/production
+const DEFAULT_LOCAL_MODEL = process.env.OLLAMA_MODEL || process.env.MODEL_NAME ||
+  (process.env.NODE_ENV === 'production' || process.env.DEMO_MODE === 'true' ? 'gpt-oss:20b' : 'llama3.2:1b');
 
 @Injectable()
 export class AnswerService {
