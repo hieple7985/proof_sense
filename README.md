@@ -87,4 +87,26 @@ packages/
 samples/
 ├── contracts/      # Sample contract documents
 └── qa.json        # Test questions & answers
+docs/
+├── quickstart.md   # Quick setup guide
+├── demo.md        # Demo script
+└── submission.md  # Hackathon submission details
 ```
+
+## 🎥 Demo
+
+See `docs/demo.md` for the complete 3-minute demo script.
+
+## 📄 Documentation
+
+- `docs/quickstart.md` - Get started in 5 minutes
+- `docs/demo.md` - Demo presentation script
+- `docs/submission.md` - Hackathon submission materials
+
+## 🏆 Hackathon Submission
+
+**Category**: Most Useful Fine-Tune
+**Built for**: OpenAI Open Model Hackathon
+**Models Used**: gpt-oss:20b (primary), llama3.2:1b (development)
+
+This project demonstrates the practical value of fine-tuning gpt-oss models for specialized, privacy-critical applications like legal contract analysis.
