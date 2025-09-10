@@ -1,10 +1,10 @@
 # ProofSense - Local Evidence & Source-Grounded Contract Analysis Agent
 
-ProofSense is an offline-first contract analysis agent built with open-source language models. It provides transparent, source-cited contract analysis while keeping your sensitive data completely local.
+ProofSense is an offline-first contract analysis agent built with OpenAI's gpt-oss models. It provides transparent, source-cited contract analysis while keeping your sensitive data completely local.
 
 ## 🎯 Key Features
 
-- **Offline-First**: Runs completely local using open-source models via Ollama
+- **Offline-First**: Runs completely local using gpt-oss models via Ollama
 - **Transparent Citations**: Every answer includes exact source quotes and document references
 - **Fine-Tunable**: Improve accuracy on your specific contract types with LoRA fine-tuning
 - **Privacy-Focused**: Your contracts never leave your machine
@@ -23,7 +23,7 @@ ProofSense is an offline-first contract analysis agent built with open-source la
 ### Prerequisites
 - Node.js 18+
 - [Ollama](https://ollama.ai) installed
-- Language model: `ollama pull llama3.2:1b` (or other compatible models)
+- gpt-oss model: `ollama pull gpt-oss:20b` (or use `llama3.2:1b` for testing)
 
 ### Installation
 ```bash
@@ -62,11 +62,11 @@ Example query: *"What are the termination clauses in these contracts?"*
 
 [Link to <3 minute demo video showing contract ingestion, querying, fine-tuning, and improved results]
 
-## 🏆 Key Value Propositions
+## 🏆 Why This Matters for gpt-oss
 
 1. **Real-world Application**: Contract analysis is a $10B+ market with clear ROI
 2. **Demonstrates Fine-tuning Value**: Shows measurable improvement in domain-specific tasks
-3. **Privacy-Critical Use Case**: Legal documents require offline processing
+3. **Privacy-Critical Use Case**: Legal documents require offline processing - perfect for gpt-oss
 4. **Transparent Analysis**: Citations build trust in automated analysis
 5. **Production-Ready**: Modular architecture, proper error handling, scalable design
 
@@ -104,6 +104,6 @@ See `docs/demo.md` for the complete 3-minute demo script.
 
 **Focus**: Fine-tuned Language Models for Contract Analysis
 **Architecture**: Offline-first with local model deployment
-**Models Used**: llama3.2:1b (development), compatible with larger models
+**Models Used**: gpt-oss:20b (primary), llama3.2:1b (development)
 
-This project demonstrates the practical value of fine-tuning open-source models for specialized, privacy-critical applications like legal contract analysis.
+This project demonstrates the practical value of fine-tuning gpt-oss models for specialized, privacy-critical applications like legal contract analysis.
