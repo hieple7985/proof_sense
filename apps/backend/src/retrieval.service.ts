@@ -1,6 +1,11 @@
 import { Injectable } from '@nestjs/common';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { chunkText, embedText, cosineSim } = require('@proofsense/retrieval');
+let chunkText: any, embedText: any, cosineSim: any;
+try {
+  ({ chunkText, embedText, cosineSim } = require('@proofsense/retrieval'));
+} catch {
+  ({ chunkText, embedText, cosineSim } = require('../../../packages/retrieval/src'));
+}
 
 type VecItem = { id: string; name: string; text: string; vec: number[] };
 
@@ -41,7 +46,7 @@ export class RetrievalService {
           id: x.best.id,
           name: x.name,
           score: 0.7 * x.best.score + 0.3 * x.avg,
-          text: bestItem?.text || ''
+          text: bestItem ? bestItem.text : ''
         };
       })
       .sort((a, b) => b.score - a.score)

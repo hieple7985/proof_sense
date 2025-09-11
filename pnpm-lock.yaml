@@ -22,6 +22,9 @@ importers:
       '@proofsense/model-runner':
         specifier: workspace:*
         version: link:../../packages/model-runner
+      '@proofsense/prompts':
+        specifier: workspace:*
+        version: link:../../packages/prompts
       '@proofsense/retrieval':
         specifier: workspace:*
         version: link:../../packages/retrieval

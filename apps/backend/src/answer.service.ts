@@ -1,8 +1,20 @@
 import { Injectable } from '@nestjs/common';
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const modelRunner = require('@proofsense/model-runner');
+let modelRunner: any;
+try {
+  modelRunner = require('@proofsense/model-runner');
+} catch {
+  modelRunner = require('../../../packages/model-runner/src/index.js');
+}
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { buildAnswerPrompt } = require('@proofsense/prompts');
+let buildAnswerPrompt: any;
+try {
+  // Prefer workspace package resolution
+  ({ buildAnswerPrompt } = require('@proofsense/prompts'));
+} catch {
+  // Fallback to relative path during local/dev or certain CI linkers
+  ({ buildAnswerPrompt } = require('../../../packages/prompts/src'));
+}
 import { config } from './config';
 import { FineTuneService } from './finetune.service';
 
