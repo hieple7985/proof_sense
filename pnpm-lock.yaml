@@ -60,9 +60,15 @@ importers:
         specifier: ^19.1.1
         version: 19.1.1(react@19.1.1)
     devDependencies:
+      '@types/node':
+        specifier: ^20.19.13
+        version: 20.19.13
       '@types/react':
         specifier: 19.1.12
         version: 19.1.12
+      typescript:
+        specifier: ^5.9.2
+        version: 5.9.2
 
   packages/eval: {}
 
