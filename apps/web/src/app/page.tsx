@@ -47,6 +47,44 @@ export default function Home() {
   const [error, setError] = useState<string>('');
   const [ftJobs, setFtJobs] = useState<FTJob[]>([]);
 
+  // Judge Quick Test helpers
+  const sampleText = 'Payment is due within 30 days from invoice date. Termination requires 30 days written notice. Liability is capped at 2x fees.';
+  const sampleQuestion = 'What are the payment terms?';
+  const [quickRunning, setQuickRunning] = useState(false);
+
+  function fillSample() {
+    setDatasetId('default');
+    setName('sample');
+    setText(sampleText);
+    setQuery(sampleQuestion);
+    setSynthesize(true);
+    setUseFT(false);
+  }
+
+  async function runQuickTest() {
+    try {
+      setError('');
+      setQuickRunning(true);
+      fillSample();
+      await fetchJson(`${API}/ingest`, {
+        method: 'POST', headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ datasetId: 'default', name: 'sample', text: sampleText })
+      });
+      const data = await fetchJson(`${API}/query`, {
+        method: 'POST', headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ datasetId: 'default', query: sampleQuestion, k: 3, synthesize: true, useFT: false })
+      });
+      setResultRaw(JSON.stringify(data, null, 2));
+      setContexts(Array.isArray(data.contexts) ? data.contexts : []);
+      setCitations(Array.isArray(data.citations) ? data.citations : []);
+      setAnswer(data.answer || '');
+    } catch (e: any) {
+      setError(`Quick test failed: ${e?.message || e}`);
+    } finally {
+      setQuickRunning(false);
+    }
+  }
+
   useEffect(() => {
     (async () => {
       try {
@@ -256,6 +294,27 @@ export default function Home() {
             marginBottom: '0.75rem',
             margin: '0 0 0.75rem 0'
           }}>Query</h2>
+
+          {/* Judge Quick Test */}
+          <div style={{
+            background: '#fff3cd',
+            border: '1px solid #ffeeba',
+            color: '#856404',
+            padding: '0.6rem',
+            borderRadius: '3px',
+            marginBottom: '0.75rem',
+            fontSize: '0.85rem'
+          }}>
+            <div style={{ marginBottom: '0.4rem', fontWeight: 600 }}>Judge Quick Test</div>
+            <ol style={{ margin: '0 0 0.5rem 1rem', padding: 0 }}>
+              <li>Click “Fill sample” to prefill inputs</li>
+              <li>Click “Run quick test” (ingest → query)</li>
+            </ol>
+            <div style={{ display: 'flex', gap: '0.5rem' }}>
+              <button onClick={fillSample} style={{ padding: '0.35rem 0.6rem', background: '#17a2b8', color: '#fff', border: 'none', borderRadius: 3, cursor: 'pointer' }}>Fill sample</button>
+              <button onClick={runQuickTest} disabled={quickRunning} style={{ padding: '0.35rem 0.6rem', background: quickRunning ? '#6c757d' : '#20c997', color: '#fff', border: 'none', borderRadius: 3, cursor: quickRunning ? 'not-allowed' : 'pointer' }}>{quickRunning ? 'Running…' : 'Run quick test'}</button>
+            </div>
+          </div>
 
           <div style={{ marginBottom: '0.75rem' }}>
             <label style={{ display: 'block', marginBottom: '0.25rem', fontSize: '0.9rem', color: '#555' }}>
